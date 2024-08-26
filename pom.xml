@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>br.com.emmanuelneri</groupId>
+    <groupId>br.com.sistemacadastro</groupId>
     <artifactId>javaee-angularjs</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
@@ -13,6 +13,8 @@
         <hibernate.version>4.3.8.Final</hibernate.version>
         <cdi.version>1.1</cdi.version>
         <ws-rs.version>2.0</ws-rs.version>
+        <jackson.version>2.15.2</jackson.version>
+
     </properties>
 
     <dependencies>
@@ -22,6 +24,28 @@
             <version>${hibernate.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+    <groupId>javax</groupId>
+    <artifactId>javaee-api</artifactId>
+    <version>8.0</version>
+    <scope>provided</scope>
+</dependency>
+
+<!-- Jackson para JSON -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+        
+        <!-- Jackson para suporte a Java 8 Date/Time API -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -48,11 +72,20 @@
             <scope>provided</scope>
         </dependency>
 
+        
+
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
             <version>1.1.0.Final</version>
         </dependency>
+		<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <version>2.3.232</version>
+    <scope>test</scope>
+</dependency>
+
     </dependencies>
 
     <build>

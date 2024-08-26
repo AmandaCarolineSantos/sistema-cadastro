@@ -1,0 +1,140 @@
+<h1>Clientes e Pedidos</h1>
+
+<div ng-show="mensagem" class="alert alert-success">{{mensagem}}</div>
+<div ng-show="erro" class="alert alert-danger">{{erro}}</div>
+
+<!-- Cadastro de Cliente -->
+<div class="panel panel-default">
+    <div class="panel-heading">Cadastro de Cliente</div>
+    <div class="panel-body">
+        <form name="form">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{ 'has-error': form.nome.$touched && form.nome.$invalid}">
+                        <label>Nome</label>
+                        <input name="nome" class="form-control" placeholder="Nome" ng-model="cliente.nome" ng-maxlength="200" required>
+                        <div ng-messages="form.nome.$error" ng-show="form.nome.$touched" class="form-message-font">
+                            <div ng-messages-include="pages/form-messages.html"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group" ng-class="{ 'has-error': form.cpf.$touched && form.cpf.$invalid}">
+                        <label>CPF</label>
+                        <input name="cpf" class="form-control" placeholder="CPF" ng-model="cliente.cpf" ng-minlength="11" ng-maxlength="11" required>
+                        <div ng-messages="form.cpf.$error" ng-show="form.cpf.$touched" class="form-message-font">
+                            <div ng-messages-include="pages/form-messages.html"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px">
+                <div class="col-md-4">
+                    <div class="btn-group">
+                        <button type="submit" ng-click="salvarCliente()" ng-disabled="form.$invalid" class="btn btn-primary">Salvar Cliente</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Lista de Clientes -->
+<div>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Data Cadastro</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="cliente in clientes">
+            <td>{{cliente.id}}</td>
+            <td>{{cliente.nome}}</td>
+            <td>{{cliente.cpf | cpf}}</td>
+            <td>{{cliente.dataCadastro | date:"dd/MM/yyyy"}}</td>
+            <td><button type="button" class="btn btn-default" ng-click="editarCliente(cliente)">Editar</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Cadastro de Pedido -->
+<div class="panel panel-default">
+    <div class="panel-heading">Cadastro de Pedido</div>
+    <div class="panel-body">
+        <form name="pedidoForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{ 'has-error': pedidoForm.descricao.$touched && pedidoForm.descricao.$invalid }">
+                        <label>Descrição</label>
+                        <input type="text" name="descricao" class="form-control" placeholder="Descrição" ng-model="pedido.descricao" required>
+                        <div ng-messages="pedidoForm.descricao.$error" ng-show="pedidoForm.descricao.$touched">
+                            <div ng-message="required">Campo obrigatório</div>
+                            <!-- Outras mensagens de erro, se necessário -->
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group" ng-class="{ 'has-error': pedidoForm.dataPedido.$touched && pedidoForm.dataPedido.$invalid}">
+                        <label>Data</label>
+                        <input type="date" name="dataPedido" class="form-control" ng-model="pedido.dataPedido" required>
+                        <div ng-messages="pedidoForm.dataPedido.$error" ng-show="pedidoForm.dataPedido.$touched">
+                            <div ng-message="required">Campo obrigatório</div>
+                            <!-- Outras mensagens de erro, se necessário -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" ng-class="{ 'has-error': pedidoForm.clienteId.$touched && pedidoForm.clienteId.$invalid}">
+                        <label>Cliente</label>
+                        <select name="clienteId" class="form-control" ng-model="pedido.clienteId" ng-options="cliente.id as cliente.nome for cliente in clientes" required>
+                        </select>
+                        <div ng-messages="pedidoForm.clienteId.$error" ng-show="pedidoForm.clienteId.$touched">
+                            <div ng-message="required">Campo obrigatório</div>
+                            <!-- Outras mensagens de erro, se necessário -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="margin-top: 10px">
+                <div class="col-md-4">
+                    <div class="btn-group">
+                        <button type="submit" ng-click="salvarPedido()" ng-disabled="pedidoForm.$invalid" class="btn btn-primary">Salvar Pedido</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Lista de Pedidos -->
+<div>
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Data</th>
+            <th>Cliente</th>
+            <th>Descrição</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="pedido in pedidos">
+            <td>{{pedido.id}}</td>
+            <td>{{pedido.dataPedido | date:"dd/MM/yyyy"}}</td>
+            <td>{{pedido.cliente.nome}}</td>
+            <td>{{pedido.descricao}}</td>
+            <td><button type="button" class="btn btn-default" ng-click="editarPedido(pedido)">Editar</button></td>
+            <td><button type="button" class="btn btn-danger" ng-click="deletarPedido(pedido.id)">Deletar</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,17 +1,12 @@
 angular.module('javaeeAngular', ['ngRoute', 'ngMessages'])
-    .config(function($routeProvider) {
+.config(function($routeProvider) {
 
-        $routeProvider
-            .when('/', {
-                templateUrl : '/pages/pessoa.html',
-                controller: 'PessoaController'
-            })
-
-            .when('/sobre', {
-                templateUrl : '/pages/sobre.html'
-            })
-
-            .otherwise({
-                redirectTo: '/'
-            });
+    $routeProvider
+        .when('/cliente-pedido', {
+            templateUrl : '/pages/cliente-pedido.html',
+            controller: 'ClientePedidoController'
+        })
+        .otherwise({
+            redirectTo: '/cliente-pedido'
+        });
 });

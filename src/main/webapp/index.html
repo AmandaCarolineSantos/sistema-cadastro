@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Java EE/Angular JS - Cadastro Pessoa</title>
+    <title>Java EE/Angular JS - Cadastro Pedido</title>
     <link rel="stylesheet" type="text/css" href="/libs/components/bootstrap/dist/css/bootstrap.min.css"/>
     <link rel="stylesheet" type="text/css" href="/libs/css/app.css"/>
-
 </head>
 <body ng-app="javaeeAngular">
 
@@ -15,8 +14,7 @@
             </div>
 
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#/">Pessoa</a></li>
-                <li><a href="#/sobre">Sobre</a></li>
+                <li><a href="#/cliente-pedido">Cadastro de Clientes e Pedidos</a></li>
             </ul>
         </div>
     </nav>
@@ -30,6 +28,9 @@
     <script src="/libs/components/angular-messages/angular-messages.min.js"></script>
 
     <script src="/util/route.js"></script>
-    <script src="/controller/pessoaController.js"></script>
+    <script src="/filters/cpfFilter.js"></script>
+    <script src="/controllers/ClientePedidoController.js"></script>
+    <script src="/services/ClienteService.js"></script>
+    <script src="/services/PedidoService.js"></script>
 </body>
 </html>

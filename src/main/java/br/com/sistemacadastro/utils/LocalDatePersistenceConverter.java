@@ -1,4 +1,4 @@
-package br.com.emmanuelneri.utils;
+package br.com.sistemacadastro.utils;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

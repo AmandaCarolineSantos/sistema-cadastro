@@ -1,7 +1,6 @@
-package br.com.emmanuelneri.model;
+package br.com.sistemacadastro.model;
 
-import br.com.emmanuelneri.utils.LocalDateJsonAdapter;
-import br.com.emmanuelneri.utils.Model;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,11 +10,12 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+
+import br.com.sistemacadastro.utils.LocalDateJsonAdapter;
+import br.com.sistemacadastro.utils.Model;
 
 @Entity
-public class Pessoa implements Model<Long> {
+public class Cliente implements Model<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
